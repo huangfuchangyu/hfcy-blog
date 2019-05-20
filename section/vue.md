@@ -86,3 +86,11 @@
 
 ## vue comput watch 区别
 
+
+##  为什么 Vue 无法探测根数据节点普通的新增属性 
+
+    Object.definProperty()
+
+## vue 如何 探测根数据节点普通的新增属性 
+
+    vm.$set()
