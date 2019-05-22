@@ -52,5 +52,11 @@
 
 ## react pureComponent 适用场景
 
+    PureComponent的原理是继承了Component类，自动加载shouldComponentUpdate函数，当组件更新时，shouldComponentUpdate对props和state进行了一层浅比较，如果组件的props和state都没有发生改变，render方法就不会触发，省去Virtual DOM的生成和对比过程，达到提升性能的目的
+
+    所以想要用PureComponent的特性，应该遵守原则：
+
+    确保数据类型是值类型
+    如果是引用类型，不应当有深层次的数据变化(解构)
 
 ## vuex, mobx, redux 各自的特点和区别
