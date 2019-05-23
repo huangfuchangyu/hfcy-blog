@@ -2,6 +2,10 @@
 
 ## react key 作用
 
+    key属性的使用，则涉及到diff算法中同级节点的对比策略，当我们指定key值时，
+    key值会作为当前组件的id，diff算法会根据这个id来进行匹配
+    
+
 ## react diff 策略
 
     Web UI中DOM节点跨层级的移动操作特别少，可以忽略不计。
