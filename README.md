@@ -10,3 +10,5 @@
 
 [函数](https://github.com/huangfuchangyu/hfcy-blog/blob/master/blog-2.md)
 
+[单例模式](https://github.com/huangfuchangyu/hfcy-blog/blob/master/singleton.md)
+
