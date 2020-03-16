@@ -12,3 +12,10 @@
 
 [单例模式](https://github.com/huangfuchangyu/hfcy-blog/blob/master/singleton.md)
 
+
+
+
+
+### ES6
+
+[块级绑定](https://github.com/huangfuchangyu/hfcy-blog/blob/master/blockLevelBinding.md)
