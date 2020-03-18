@@ -20,7 +20,7 @@
 
 [块级绑定](https://github.com/huangfuchangyu/hfcy-blog/blob/master/blockLevelBinding.md)
 
-
+[类](https://github.com/huangfuchangyu/hfcy-blog/blob/master/class.md)
 
 
 
