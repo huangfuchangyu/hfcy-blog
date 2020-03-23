@@ -24,6 +24,8 @@
 
 [函数](https://github.com/huangfuchangyu/hfcy-blog/blob/master/function.md)
 
+[对象的扩展](https://github.com/huangfuchangyu/hfcy-blog/blob/master/objectExtension.md)
+
 
 
 
