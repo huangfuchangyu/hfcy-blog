@@ -22,6 +22,8 @@
 
 [类](https://github.com/huangfuchangyu/hfcy-blog/blob/master/class.md)
 
+[函数](https://github.com/huangfuchangyu/hfcy-blog/blob/master/function.md)
+
 
 
 
