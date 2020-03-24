@@ -228,3 +228,232 @@ console.log(descriptor.get); // undefined
 
 #### 重复的对象字面量属性
 
+> ES5 严格莫斯下， 存在重复的属性时 ， 会抛出错误
+
+``` javascript
+'use strict'
+
+var person = {
+    name: 'bob',
+    name: 'bob'     // es5 严格模式下 会提示语法错误
+}
+```
+
+> ES6 移除了重复属性检查， 无论是否严格模式， 当存在重复属性时 ， 排在后面的属性的值会成为该属性的实际值
+
+
+
+
+
+#### 自有属性的枚举顺序
+
+> ES5 并没有定义对象的枚举顺序， 而是将该问题留给了js 引擎厂商， ES6 则严格定义了对象自有属性在被枚举的返回顺序， 这影响了 Object.getOwnPropertyNames 与 Reflect.ownKeys 返回属性的方式， 也同样影响了 Object.assign() 处理 属性的顺序
+
+> 自有属性枚举时 基本顺序如下：
+
+1. 所有的数字类型键， 按升序排列
+2. 所有的字符串类型建，按被添加的顺序排列
+3. 所以的符号类型键， 也按照添加顺序
+
+``` javascript
+var obj = {
+    a: 1,
+    0: 1,
+    c: 1,
+    2: 1,
+    b: 1,
+    1: 1
+}
+
+obj.d = 1
+
+console.log(Object.getOwnPropertyNames(obj).join(''))   // 012acbd
+```
+
+> 对于 for-in 循环 ，并非所有的js 引擎都采用相同的处理方式，其媒体顺序扔未被确定 而Object.keys() 和 JSON.stringify（） 也使用了与 for-in 一样的枚举顺序
+
+
+
+
+
+#### 修改对象的原型
+
+> 对象的原型会通过构造器或 Object.create() 方法创建对象时被指定， js 编程到ES5 为止最重要的假定之一就是： 对象的原型在初始化完成后会保持不变， ES5 添加了Object.getPrototypeOf() 方法 来获取任意指定对象的原型， 不过仍然缺少在初始化之后更改原型的方法
+
+> ES6 通过添加 Object.sePrototypeOf() 方法改变了这种假设， 此方法允许修改任意指定对象的原型， 他接受两个参数   ： 需要被修改原型的对象， 以及将会成为前者原型的对象
+
+``` javascript
+let person = {
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+let dog = {
+    getGreeting() {
+        return 'woof'
+    }
+}
+
+let friend = Object.create(person)   // 原型为 person  
+console.log(friend.getGreeting())    // 'hello'
+console.log(Object.getPrototypeOf(friend) === person)  // true
+
+Object.setPrototypeOf(friend, dog)    // 将原型设置为 dog
+console.log(friend.getGreeting())    // 'woof'
+console.log(Object.getPrototypeOf(friend) === dog)  // true
+```
+
+> 对象的原型的实际值被存储在一个内部属性 【Prototype】上 ， Object.getPrototype() 方法会返回此属性存储的值， 而 Object.setPrototype() 方法则能够修改该值
+
+
+
+
+
+
+
+#### 使用 super 引用的简单原型访问
+
+> super 引用能更轻易的在对象原型上进行功能调用， 例如 ： 若要覆盖对象实例的一个方法， 但依然想要调用原型上的同名方法， 可以这么做
+
+```javascript
+let person = {
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+let dog = {
+    getGreeting() {
+        return 'woof'
+    }
+}
+
+let friend = {
+    getGreeting() {
+        return super.getGreeting() + 'Hi'
+      //  return Object.getPrototypeOf(this).getGreeting.call(this) + 'Hi'  // 这样不是不易于尾调用优化嘛
+    }
+}
+  
+Object.setPrototypeOf(friend, person)   // 将原型设置为 person
+console.log(friend.getGreeting())      // 'Hello Hi'
+console.log(Object.getPrototypeOf(friend) === person)  // true
+
+Object.setPrototypeOf(friend, dog)   // 将原型设置为 dog
+console.log(friend.getGreeting())      // 'woof Hi'
+console.log(Object.getPrototypeOf(friend) === dog)  // true
+```
+
+> 若要使用  super 引用来调用对象原型上的任何方法， 只要这个引用是位于 简写方法之内， 试图在简写方法之外使用 super 会导致语法错误
+
+``` javascript
+let friend = {
+    getGreeting: function() {
+        return super.getGreeting() + 'Hi'    // 语法错误
+    }
+}
+```
+
+> 此例使用了一个匿名函数作为属性， 于是调用 super.getGreeting() 就导致了语法错误 ， 因为在这种上下文中super 是不可用的
+
+> 当使用多级继承时， Object.getPrototypeOf() 不再适用于所有场景  ， 此时， 引用就能体现出它的强大
+
+``` javascript
+let person = {
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+let friend = {
+    getGreeting() {
+		return Object.getPrototypeOf(this).getGreeting.call(this) + 'Hi' 
+    }
+}
+
+Object.setPrototypeOf(friend, person)    
+
+let relative = Object.create(friend)
+  
+console.log(person.getGreeting())     // 'Hello'
+console.log(friend.getGreeting())     // 'Hello Hi'
+console.log(relative.getGreeting())   // error
+```
+
+> 调用 relative.getGreeting() 时 发生了错误 ， 因为此时 this 的值是relative 。 而 relative 的原型是 friend， 这样 friend.getGreeting().call() 调用就会导致进城开始反复进行递归调用， 直到发生堆栈错误
+
+> 此问题在 ES5 中很难解决， 用 ES6 的 super 就很简单了
+
+``` javascript
+let person = {
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+let friend = {
+    getGreeting() {
+		return super.getGreeting() + 'Hi' 
+    }
+}
+
+Object.setPrototypeOf(friend, person)    
+
+let relative = Object.create(friend)
+  
+console.log(person.getGreeting())     // 'Hello'
+console.log(friend.getGreeting())     // 'Hello Hi'
+console.log(relative.getGreeting())   // 'Hello Hi'
+```
+
+
+
+
+
+
+
+
+
+#### 正式的 “方法”  定义
+
+> 在 ES6 之前  “方法” 的概念从未被正式定义， 他此前仅指 对象的函数属性而非数据属性， ES6 则正式将方法定义为： 一个拥有 【HomeObject】内部属性的函数， 此内部属性指向该方法所属的对象
+
+``` javascript
+let person = {
+    // 方法
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+// 并非方法
+// 难道 window.shareGreeting() 不算吗？
+function shareGreeting() {
+    return 'Hi'
+}
+```
+
+> 由于 getGreeting() 被直接赋给了一个对象， 他的 【HomeObject】 属性就是 person ， 而另一方面 ， shareGreeting() 函数被创建时， 并没有赋给一个对象， 他就不具备 【HomeObject】属性， 这种差异在大多数情况下并不重要， 然而使用 super 引用时就完全不同了
+
+> 任何对 super 的引用 都会使用 【HomeObject】属性来判断 要做什么， 第一步是在【HomeObject】上调用 Object.getPrototypeOf() 来获取对象的原型引用， 接下来， 在该原型上查找同名函数， 最后 创建 this 绑定并调用方法
+
+``` javascript
+let person = {
+    getGreeting() {
+        return 'Hello'
+    }
+}
+
+//原型为 person
+let friend = {
+    getGreeting() {
+        return super.getGreeting() + 'Hi'
+    }
+}
+
+Object.setPropertyOf(friend, person)
+console.log(friend.getGreeting())    // 'Hello Hi'
+```
+
+> 此时 friend.getGreeting() 的 【HomeObject】值 是 friend ， 并且 friend 的原型是 person。 因此  super.getGreeting()  就等价于 person.getGreeting().call(this)
