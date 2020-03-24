@@ -26,6 +26,8 @@
 
 [对象的扩展](https://github.com/huangfuchangyu/hfcy-blog/blob/master/objectExtension.md)
 
+[解构]([https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E8%A7%A3%E6%9E%84.md](https://github.com/huangfuchangyu/hfcy-blog/blob/master/解构.md))
+
 
 
 
