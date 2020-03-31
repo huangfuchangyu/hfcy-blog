@@ -320,6 +320,197 @@ let hasLengthOf10 = {
     [Symbol.match]: function(value) {
         return value.length === 10? [value] : null
     },
+    [Symbol.replace]: function(value, replacement) {
+        return value.length === 10 ? replacement : value
+    },
+    [Symbol.search]: function(value) {
+        return value.length === 10? 0 : -1
+    },
+    [Symbol.split]: function(value) {
+        return value.length === 10 ? ['', ''] : [value]
+    }
 }
+
+let message1 = 'hello word'   // 11 characters
+let message2 = 'hello john'   // 10 characters
+
+let match1 = message1.match(hasLengthOf10),
+    match2 = message2.match(hasLengthOf10)
+
+console.log(match1)   // null
+console.log(match2)   // ['hello john']
+
+let replace1 = message1.replace(hasLengthOf10, 'Howdy'),
+    replace2 = message2.replace(hasLengthOf10, 'Howdy')
+
+console.log(replace1)   // 'hello word'
+console.log(replace2)   // 'Howdy'
+
+let search1 = message1.search(hasLengthOf10),
+    search2 = message2.search(hasLengthOf10)
+
+console.log(search1)   // -1
+console.log(search2)   // 0
+
+let split1 = message1.spilt(hasLengthOf110),
+    split2 = message2.spilt(hasLengthOf110)
+
+console.log(split1)  // ['hello word']
+console.log(split2)  // ['', '']
 ```
+
+> hasLengthOf110 对象 模拟了正则表达式的工作方式， 尽管 hasLengthOf110 不是正则表达式， 但他仍然能作为参数传递给这些字符串方法， 并能够正常工作
+>
+> 这虽然是一个简单的例子， 却表明能够进行比现有正则表达式更复杂的匹配 让自定义模式匹配更加可行
+
+
+
+
+
+
+
+#### Symbol.toPrimitive
+
+> JS 经常在使用特定运算符的时候 试图 进行隐士转换， 以便将对象转换为基本类型值， 例如 当使用 ‘==’  运算符来对字符串与对象进行比较的时候， 该对象会在比较之前被转换为一个基本类型值， 到底转换为何种基本类心值， 此前属于内部操作， 而ES6 则通过 Symbol.toPrimitive 方法将其暴露出来， 以便让其可更改
+
+> Symbol.toPrimitive 方法被定义在所有常规类型的原型上， 规定了对象在对象被转换为基本类型值的时候会发生什么， 当需要转化时， Symbol.toPrimitive 会被调用， 并按照规范传入一个提示性的字符串参数， 该参数有 3 种可能， 当参数为 ‘number’ 的时候 ， Symbol.toPrimitive 应当返回一个数值， 当参数为 ‘string’ 的时候， 应当返回一个字符串， 当参数为 ‘default ’  的时候 对返回值没有特别的要求
+
+
+
+* 对于大部分常规对象， ‘数值模式’  依次会有下述行为
+  1. 调用 valueOf() 方法， 如果结果是一个基本类型  ， 则返回它
+  2. 否则 调用 toString() 方法， 如果结果是一个基本值类型， 则返回它
+  3. 否则 抛出一个错误
+* 对于大部分常规对象， ‘字符串模式’  会依次有下列行为 
+  1. 调用 toString() 方法， 如果结果是一个基本值类型， 则返回它
+  2. 否则 调用 valueOf() 方法， 如果结果是一个基本类型  ， 则返回它
+  3. 否则 抛出一个错误
+
+> 在多数情况下， 常规对象的默认模式都等价于 数值模式 （只有 Date 类型除外， 他默认使用字符串模式）  通过 定义 Symbol.toPrimitive 方法， 可以重写这些默认的转换行为
+
+> '默认模式' 只在使用 == 运算符， + 运算符 ， 或者传递 单一参数给 Date 构造器的时候被使用， 而大部分运算符都使用字符串模式或是数值模式
+
+``` javascript
+function Temperature(degrees) {
+    this.degrees = degrees
+}
+
+Temperature.prototype[Symbol.toPrimitive] = functin(hint) {
+    switch(hint) {
+        case 'string': 
+            return this.degrees + '\u00b0'   // 温度符号
+        case 'number': 
+            return this.degrees
+        case 'default': 
+            return this.degrees + 'degrees'
+    }
+}
+
+let freezing = new Temperature(32)
+
+console.log(freezing + '!')     // '32 degrees!'
+console.log(freezing / 2)       // 16
+console.log(String(freezing))   // '32^'
+```
+
+
+
+
+
+
+
+
+
+#### Symbol.toStringTag
+
+> js 最有趣的课题之一是在不同的全局执行环境中使用， 这种情况会在浏览器页面包含 iframe 是出现， 此时 页面与 iframe 页面 拥有各自的全局执行环境， 大多数情况下 ， 这并不是一个问题， 但是 当 对象已经在环境之间经历了传递， 再要识别他们的类型时， 问题就来了
+
+> 该问题得典型例子就是 从 iframe 页面 向容器页面传递数组， 当跨域进行传递时， instanceof Array 进行检测 ， 结果却是 false,  因为该数组是由另外一个域的数组构造器创建的， 不同于当前域的数组构造器
+
+> 面对识别数组这类问题， 可以使用 toString() 方法， 很多js 库包含了如下函数
+
+``` javascript
+function isArray(value) {
+    return Object.prototype.toString.call(value) == '[object array]'
+}
+
+console.log(isArray([]))  // true
+```
+
+> ES6 通过 Symbol.toStringTag 重定义了相关行为， 该Symbol 代表了所有对象的一个属性， 定义了 Object.prototype.toString.call() 被调用时应当返回什么值
+
+> 同样， 可以在自定义对象上定义 Symbol.toStringTag 的值
+
+``` javascript
+function Person(name) {
+    this.name = name
+}
+
+Person.prorotype[Symbol.toStringTag] = 'Person'
+
+let me = new Person('bob')
+
+console.log(me.toString())     // '[object Person]'
+console.log(Object.prototype.toString.call(me))  // '[object Person]'
+```
+
+> 本例在Person 的原型上 定义了 Symbol.toStringTag 属性， 用于给他的字符串表现形式提供默认行为， 由于 Person 的原型继承了 Object.prototype.toString() 方法  ， Symbol.toStringTag 的返回值 在调用 me.toString() 的时候也会被使用， 不过 ， 依然可以在该对象上定义自己的toString() 方法， 让他有不同的返回值， 而不影响 Object.prototype.toString.call()  
+
+``` javascript
+function Person(name) {
+    this.name = name
+}
+
+Person.prorotype[Symbol.toStringTag] = 'Person'
+
+Person.prototype.toString = function() {
+    return this.name
+}
+
+let me = new Person('bob')
+
+console.log(me.toString())     // 'bob'
+console.log(Object.prototype.toString.call(me))  // '[object Person]'
+```
+
+> 由于 Person 的实例不再继承 Object.prototype.toString() 方法， 调用 me.toString() 会显示不同的结果
+
+> 除非进行了特殊的指定， 否则所有的对象都会从Object.protytype 继承 Symbol.toStringTag 属性， 其默认的属性值是字符串 ‘Object’
+
+> 对于开发者自定义对象， Symbol.toStringTag 的返回值不受任何限制， 例如 你可以自由使用 ‘Array' 作为 Symbol.toStringTag 属性的值
+
+``` javascript
+function Person(name) {
+    this.name = name
+}
+
+Person.prorotype[Symbol.toStringTag] = 'Array'
+
+Person.prototype.toString = function() {
+    return this.name
+}
+
+let me = new Person('bob')
+
+console.log(me.toString())     // 'bob'
+console.log(Object.prototype.toString.call(me))  // '[object Array]'
+```
+
+> 在这段代码中  ， 调用 Object.prototype.toString 结果是 '[object Array]'  ， 与在真实数组上调用的结果完全一样， 这一点确实证明 Object.prototype.toString() 不再是用于识别对象类型的可靠方法
+
+> 改变 原生对象的字符串标签也是可能的， 只需要在对象的原型上对  Symbol.toStringTag 进行赋值 
+
+``` javascript
+Array.prorotype[Symbol.toStringTag] = 'Magic'
+
+let values = []
+
+console.log(Object.prototype.toString.call(values))   // '[object Magic]'
+```
+
+> 尽管 尽量不要用这种方式修改内置对象， 但语言本身没有禁止该行为
+
+
+
+
 
