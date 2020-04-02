@@ -34,6 +34,10 @@
 
 [迭代器与生成器](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8.md)
 
+[Promise](https://github.com/huangfuchangyu/hfcy-blog/blob/master/Promise.md)
+
+[增强的数组类型](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%A2%9E%E5%BC%BA%E7%9A%84%E6%95%B0%E7%BB%84%E5%8A%9F%E8%83%BD.md)
+
 
 
 ### 设计模式
