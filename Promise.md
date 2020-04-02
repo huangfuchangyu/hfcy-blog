@@ -1,4 +1,4 @@
-#### Promise
+## Promise
 
 > Promise 是为异步操作的结果所准备的占位符， 函数可以返回一个 Promise 而不必订阅一个事件或向函数传递一个回调参数
 
@@ -261,5 +261,67 @@ Process.on('unhandledRejection', function(reason, promise) {
 })
 
 reject = Promise.reject(new Error('explosion'))
+```
+
+``` javascript
+let rejected
+
+process.on('rejectionHandled', function(promise) {
+    console.log(rejected === promise)    // true
+})
+
+rejected = Promise.reject(new Error('Explosion'))
+
+setTimeout(
+	() => {
+        reject.catch(err => console.log(err))  // 'Explosion'
+    },
+    1000
+)
+```
+
+此处的 rejectionHandled 事件  在 拒绝处理函数最终被调用时触发， 若在 reject 被创建后直接将拒绝处理函数附加到它上面， 那么此事件就不会被触发
+
+可以将 unhandledRejection 和 rejectionHandled 配合使用 
+
+``` javascript
+let possiblyUnhandledRejections = new Map()
+
+Process.on('unhandledRejection', function(reason, promise) {
+    possiblyUnhandledRejections.set([promise, reason])
+})
+
+process.on('rejectionHandled', function(promise) {
+    possiblyUnhandledRejections.delete(promise)
+})
+```
+
+
+
+
+
+
+
+
+
+#### 浏览器的拒绝处理
+
+浏览器的拒绝处理会被 window 对象触发， 并完全等效于nodejs 的相关事件
+
+- unhandledRejection: 当一个Promise 被拒绝， 而在事件循环的一个轮次中没有任何拒绝处理函数被调用， 该事件就会被触发
+- rejectionHandled: 当一个 Promise 被拒绝， 并在事件循环的一个轮次之后再有拒绝处理函数被调用， 该事件就会被触发
+
+nodejs 的实现 会传递分离的参数给事件处理函数， 而浏览器事件的处理函数则会接受到包含下列属性的一个对象
+
+* type： 事件的名称 （'unhandledRejection '或 'rejectionHandled'）
+* promise: 被拒绝的 Promise 对象
+* reason: Promise 中的拒绝值（拒绝原因）
+
+
+
+浏览器的实现中另一个差异就是 ： reason 在两种事件中都可用
+
+``` javascript
+
 ```
 
