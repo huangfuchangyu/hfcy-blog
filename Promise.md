@@ -322,6 +322,126 @@ nodejs 的实现 会传递分离的参数给事件处理函数， 而浏览器�
 浏览器的实现中另一个差异就是 ： reason 在两种事件中都可用
 
 ``` javascript
+let rejected
 
+window.onunhandledrejection = function(event) {
+    console.log(event.type)                 // 'unhandledrejection'
+    console.log(event.reason.message)
+    console.log(reject === event.promise)
+}
+
+window.onrejectionhandled = function(event) {
+    console.log(event.type)                 
+    console.log(event.reason.message)
+    console.log(reject === event.promise)
+}
+
+rejected = Promise.reject(new Error('explosion'))
+```
+
+
+
+
+
+
+
+
+
+#### 串联 Promise
+
+* 如果 Promise 的 then 方法 没有返回值  则会 隐式 返回 fulfilled 状态的Promise  值为 undefined 
+* 如果 then 方法 显示返回一个 非Promise  则会 它仍然会生成一个状态为`fulfilled`的新的Promise对象，并把该返回值传入下一个then
+
+
+
+
+
+#### 捕获错误
+
+Promise 链允许捕获前一个Promise 的完成或拒绝处理函数中发生的错误
+
+``` javascript
+let p1 = new Promise(function(resolve, reject) {
+    resolve(42)
+})
+
+p1.then(function() {
+    throw new Error('Boom')
+})
+.catch(function(err) {
+    console.log(err.message)   // 'Boom'
+})
+```
+
+> 若是一个 拒绝处理函数抛出了错误 情况也一样
+
+``` javascript
+let p1 = new Promise(function(resolve, reject) {
+    throw new  Error('Explosion')
+})
+
+p1.catch(function(err) {
+    console.log(err.message)
+    throw new Error('Boom')
+})
+.catch(function() {
+    console.log(error,message)   // Boom
+})
+```
+
+链式Promise 调用能捕获其他链中的 Promise 错误 ， 所以 应当始终在Promise 链尾部添加拒绝处理函数
+
+
+
+
+
+#### Promise.all()
+
+Promise.all() 方法接收单个可迭代对象（如数组）作为参数。 并返回一个 Promise ， 这个可迭代对象的元素都是Promise 只有他们都完成后 ， 所返回的Promise 才会被完成
+
+```javascript
+let p1 = new Promise .....
+let P2 = new Promise ////
+
+
+let P3 = Promise.all([p1, p2])
+p3.then(function(arr) {
+    console.log(arr[0])
+    console.log(arr[1])
+})
+```
+
+> 如果传递给 Promise.all 的任意 Promise 被拒绝了 ， name方法所返回的Promise 会被立刻拒绝,e而不必等其他Promise 结束
+
+
+
+
+
+
+
+#### Promise.race()
+
+Promise.race() 提供了监视多个 Promise 的一个稍微不同的方法。此方法也接受一个包含需
+监视的 Promise 的可迭代对象，并返回一个新的 Promise ，但一旦来源 Promise 中有一个被
+解决，所返回的 Promise 就会立刻被解决。与等待所有 Promise 完成的 Promise.all() 方法
+不同，在来源 Promise 中任意一个被完成时， Promise.race() 方法所返回的 Promise 就能
+作出响应 
+
+``` javascript
+let p1 = Promise.resolve(42)
+
+let p2 = new Promise(function(resolve, reject) {
+    resolve(43)
+ })
+
+let p3 = new Promise(function(resolve, reject) {
+    resolve(44)
+})
+
+let p4 = Promise.race([p1, p2, p3])
+
+p4.then(function(value) {
+    console.log(value) // 42
+})
 ```
 
