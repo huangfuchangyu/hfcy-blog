@@ -38,6 +38,8 @@
 
 [增强的数组类型](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%A2%9E%E5%BC%BA%E7%9A%84%E6%95%B0%E7%BB%84%E5%8A%9F%E8%83%BD.md)
 
+[Modules](https://github.com/huangfuchangyu/hfcy-blog/blob/master/modules.md)
+
 
 
 ### 设计模式
