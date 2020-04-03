@@ -122,3 +122,202 @@ function tryimport() {
 
 
 #### 导入绑定的一个微妙怪异点
+
+ES6 的import 语句为变量， 函数 与类 创建了只读绑定， 而不像普通变量那样简单引用了原始绑定， 尽管导入绑定的模块无法修改绑定的值， 但负责导出的模块却能做到这一点
+
+``` javascript
+export var name = 'bob'
+export function setName(newName) {
+    name = newName
+}
+```
+
+当导入了这两个绑定后， setName 还可以改变name 的值
+
+``` javascript
+import {name, setName} from './example.js'
+
+console.log(name)   // 'bob'
+setName('Greg')    
+console.log(name)   // ''Greg
+
+name = 'Kyire'     // error
+```
+
+
+
+
+
+
+
+#### 重命名导出与导入
+
+``` javascript
+// 重命名导出
+function sum() {}
+
+export {sum as add}
+
+
+// 导入 
+import {add} from './example.js'
+```
+
+``` javascript
+// 重命名导入
+import {add as sum} from './example.js'
+```
+
+
+
+
+
+
+
+
+
+#### 导出默认值
+
+模块语法为从模块中导出或导入默认值进行了优化， 模块的默认值使用 default 关键字所指定的单个变量，函数或类， 而在每个模块中只能设置一个默认导出，将default 关键字用于多个导出会导致语法错误
+
+``` javascript
+export default function sum() {}
+
+// 或 
+
+function sum（） {}
+export default sum
+
+// 或
+export {sum as default}
+```
+
+
+
+
+
+
+
+#### 导入默认值
+
+``` javascript
+// 导出
+export let color = 'red'
+export default function sum() {}
+
+// 导入
+import sum , {color} from './example.js'
+
+// 如果导出默认值， 也可以使用重命名语法对默认值进行导入
+import {default as sum, color } from './example.js'
+```
+
+
+
+
+
+
+
+#### 绑定的再导出
+
+有时想将导入的模块在重新导出
+
+``` javascript
+import {sum} from './example.js'
+export{sum}
+
+// 还可以使用单个语句完成相同的任务
+export {sum} from './example.js'
+
+// 使用别名
+export {sum as totle} from './example.js'
+
+// 如果想将来自于另一个 模块的所有值完全导出 可以使用 * 
+// 假设example.js 具有一个默认导出， 当你使用这种语时
+// 就无法为当前模块在定义一个默认导出
+export * from './example.js'
+
+```
+
+
+
+
+
+
+
+
+
+#### 加载模块
+
+尽管ES6定义了模块的语法，但并未定义如何加载他们， 这是规范复杂性的一部分， 这种复杂性对于实现环境来说是无法预知的， ES6 未选择给所有的js 环境努力创建一个有效的单一规范， 而只规定了语法， 并制定了一个未定义的内部操作 HostResolveImportedModule 的抽象加载机制， web 浏览器和 Node.js 可以自行决定用什么方式来实现 HostResolveImportedModule ， 以便更好地契合各自的环境
+
+
+
+
+
+
+
+#### 在WEB浏览器中使用模块
+
+在 script 标签中使用模块
+
+``` html
+// 加载一个module
+<script type='module' src='./module.js'></script>
+    
+// 创建一个module
+<script type='module'>
+    import {sum} from './example.js'
+    let result = sum(1,2)
+</script>
+```
+
+此时 result 变量并未暴露在全局， 而只是在模块内部存在
+
+> 当 type 属性无法辨认时， 浏览器会忽略  <script type='module'> 声明， 从而提供良好的向下兼容
+
+
+
+
+
+
+
+#### web 浏览器中模块加载顺序
+
+模块相对于脚本的独特之处在于， 他们能使用 import 来指定必须要加载的其让他文件， 以保证正确执行， 为了支持此功能， <script type='module'> 总是自动加上 defer 属性， defer 属性是加载脚本文件的可选项， 但在加载模块文件时总是自动应用的， 当 html 解析到有 src 属性的  <script type='module'> 标签是， 就会立即开始下载模块文件， 但并不会执行它，知道整个网页文档全部解析完位置， 模块也会按照他们在 html 文件中出现 的顺序依次执行， 这意味着 第一个  <script type='module'> 总是在第二个之前执行， 及时有些模块不用src 指定而是包含了内联脚本
+
+``` html
+//首先执行
+<script type='module' src='./example.js' />
+
+// 第二个执行
+<script type='module'>
+	let result = '123'
+</script>
+
+//最后执行
+<script type='module' src='./example2.js' />
+```
+
+每个模块都可能用import 导入了一个或多个其他模块， 这就让事情变得复杂了， 这也就是为何模块会首先被解析， 因为这样才能识别出所有的import 语句， 每个import语句又会触发fetch ，并且在所有的import 导入的资源被加载与与执行完毕之前， 灭有任何模块会被执行
+
+> 在前面的范例中， 完整的加载次序是 
+
+1. 下载并解析 example.js
+2. 递归下载并解析在 example.js 中使用 import 导入的资源
+3. 解析内联模块
+4. 递归下载并解析在内联模块中使用的import 导入的资源
+5. 下载并解析 example2.js
+6. 递归下载并解析在module2.js 中使用import 导入的资源
+
+> 一旦加载完毕， 直到页面文档被完整解析之前， 都不会有任何代码被执行， 在文档解析完毕后 会发生下列行为
+
+1. 递归执行module1 导入的资源
+2. 执行 module1.js 
+3. 递归执行内联模块导入的资源
+4. 执行内联模块
+5. 递归执行module2导入的资源
+6. 执行module2.js
+
+内联模块除了不必先现在代码之外， 与其他两个模块的行为一致， 加载import资源与执行模块的次序都是完全一样的
+
