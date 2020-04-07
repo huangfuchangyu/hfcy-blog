@@ -10,7 +10,7 @@
 
 [函数](https://github.com/huangfuchangyu/hfcy-blog/blob/master/blog-2.md)
 
-
+[apply bind call](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/apply%2Cbind%2Ccall.md)
 
 
 
