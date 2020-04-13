@@ -50,6 +50,8 @@
 
 [工厂模式](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
 
+[装饰者模式](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E7%9D%80%E6%A8%A1%E5%BC%8F.md)
+
 
 
 
