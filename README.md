@@ -12,6 +12,8 @@
 
 [apply bind call](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/apply%2Cbind%2Ccall.md)
 
+[this](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/%E5%85%B3%E4%BA%8Ethis.md)
+
 
 
 
