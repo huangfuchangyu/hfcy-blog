@@ -61,3 +61,5 @@
 
 [防抖](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E9%98%B2%E6%8A%96.md)
 
+[节流](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E8%8A%82%E6%B5%81.md)
+
