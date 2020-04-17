@@ -24,7 +24,7 @@ js 任务分为同步和异步两种， 他们处理方式不同
 
 事件处理过程： 
 
-![事件处理过程](E:\workspace\hfcy-blog\基础\event-loop.jpg)
+![](./event-loop.jpg)
 
 
 
@@ -36,7 +36,7 @@ js 任务分为同步和异步两种， 他们处理方式不同
 4. 如果微任务 执行的过程中 产生了新的微任务， 则继续执行该微任务
 5. 微任务执行完毕后 ， 进入到下一次事件循环 ， 执行第2 步
 
-![](E:\workspace\hfcy-blog\基础\browser-deom1-excute-animate.gif)
+![](./browser-deom1-excute-animate.gif)
 
 (图片 来自于 http://lynnelv.github.io/js-event-loop-browser)
 
