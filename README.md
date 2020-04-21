@@ -18,6 +18,8 @@
 
 [JavaScript事件循环机制](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6.md)
 
+[继承](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF.md)
+
 
 
 ### ES6
