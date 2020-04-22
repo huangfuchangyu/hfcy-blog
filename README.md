@@ -68,7 +68,7 @@
 
 ### 框架
 
-[React 首屏加载速度优化]()
+
 
 
 
@@ -81,3 +81,9 @@
 [new 的模拟实现](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/new%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0.md)
 
 [call的模拟实现](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/call%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0.md)
+
+
+
+## 性能优化
+
+[React 首屏加载速度优化](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/react%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96.md)
