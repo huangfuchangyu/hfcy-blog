@@ -70,7 +70,7 @@
 
 ### 框架
 
-
+[react diff 策略](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/React_Vdom_diff%E7%AD%96%E7%95%A5.md)
 
 
 
