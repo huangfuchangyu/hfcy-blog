@@ -24,7 +24,7 @@
 
 [JSON](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/JSON.md)
 
-
+[CORS](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/CORS.md)
 
 
 
