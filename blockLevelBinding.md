@@ -80,6 +80,10 @@ function getValue(condition) {
 var count = 1
 
 let count = 1  // 语法错误
+
+var a = 1
+var a = 2
+console.log(a)    // 2  不会语法错误 会覆盖
 ```
 
 > 在嵌套的作用域内使用let声明同名新变量，就不会有问题
