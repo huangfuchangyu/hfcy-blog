@@ -26,6 +26,8 @@
 
 [CORS](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/CORS.md)
 
+[HTTP 缓存机制](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/http%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6.md)
+
 
 
 
