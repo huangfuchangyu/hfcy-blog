@@ -83,6 +83,8 @@
 
 [react fiber](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/reactFiber.md)
 
+[react setState 详解](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/setState.md)
+
 
 
 ### 专题
