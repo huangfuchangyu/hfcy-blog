@@ -81,6 +81,8 @@
 
 [redux](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/redux.md)
 
+[react fiber](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/reactFiber.md)
+
 
 
 ### 专题
