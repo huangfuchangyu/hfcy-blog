@@ -2,6 +2,24 @@
 
 
 
+调用 setState() 时  ， 实际上发生了 
+
+1. 调用 enqueueSetState（） 方法  并且 传递了 实例 和状态
+2. 将要更新的状态 放在  internalInstance._pendingStateQueue  数组里
+3.  将 internalInstance._pendingStateQueue 数组   传给 enqueueUpdate（） 处理
+4. 判断 BatchingUpdates 状态  如果 正在 BatchingUpdates  执行 5， 否则 执行 6
+5. 将当前 组件 放在 dirtyComponent 中 
+6.  将 BatchingUpdates  状态更新为 true， 循环 dirtyComponent  中的 updateComponent 来更新组件
+
+
+
+**注： **
+
+1. 由React控制的事件处理程序，以及生命周期函数调用setState不会同步更新state 。
+2. React控制之外的事件中调用setState是同步更新的。比如原生js绑定的事件，setTimeout/setInterval等。
+
+
+
 setState 源码
 
 ``` javascript
