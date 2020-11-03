@@ -75,3 +75,29 @@ SimulateNew 实现如下
 	
 ```
 
+
+```javascript
+
+  function BaseFunc(width, height) {
+
+    this.width = width
+    this.height = height
+  }
+
+  function myNew() {
+    let paramArr = Array.from(arguments)
+    const constructor = paramArr.shift()
+
+    const obj = Object.create(constructor.prototype)
+
+    constructor.apply(obj, paramArr)
+
+    return obj
+  }
+
+  const baseFuncInstance = myNew(BaseFunc, 100, 50)
+
+  console.log(baseFuncInstance.width)
+  console.log(baseFuncInstance.height)
+```
+
