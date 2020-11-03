@@ -78,6 +78,7 @@ SimulateNew 实现如下
 
 ```javascript
 
+// 11.3 add
   function BaseFunc(width, height) {
 
     this.width = width
