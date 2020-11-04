@@ -30,6 +30,8 @@
 
 [重绘和重排（回流）](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%EF%BC%88%E5%9B%9E%E6%B5%81%EF%BC%89.md)
 
+[map() forEach()](https://github.com/huangfuchangyu/hfcy-blog/blob/master/基础/map-forEach-forOf.md)
+
 
 
 Array的原型方法 哪些会改变原数组 
