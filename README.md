@@ -28,7 +28,7 @@
 
 [HTTP 缓存机制](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%9F%BA%E7%A1%80/http%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6.md)
 
-[重绘和重排（回流）]([https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%EF%BC%88%E5%9B%9E%E6%B5%81%EF%BC%89.md](https://github.com/huangfuchangyu/hfcy-blog/blob/master/专题/重绘和重排（回流）.md))
+[重绘和重排（回流）](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%EF%BC%88%E5%9B%9E%E6%B5%81%EF%BC%89.md)
 
 
 
