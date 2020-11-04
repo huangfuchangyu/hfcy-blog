@@ -96,6 +96,7 @@
 [new 的模拟实现](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/new%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0.md)
 
 [call的模拟实现](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/call%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0.md)
+
 [跨域](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/%E8%B7%A8%E5%9F%9F.md)
 
 
