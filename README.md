@@ -32,8 +32,6 @@
 
 [map() forEach()](https://github.com/huangfuchangyu/hfcy-blog/blob/master/基础/map-forEach-forOf.md)
 
-[力扣笔记]()
-
 
 Array的原型方法 哪些会改变原数组 
 
@@ -122,7 +120,7 @@ Array的原型方法 哪些会改变原数组
 
 [栈](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88.md)
 
-
+[力扣笔记](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E4%B8%93%E9%A2%98/leeCode.md)
 
 ### 性能优化
 
