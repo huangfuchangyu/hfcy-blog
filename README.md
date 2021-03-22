@@ -92,6 +92,16 @@ Array的原型方法 哪些会改变原数组
 
 [react setState 详解](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E6%A1%86%E6%9E%B6/setState.md)
 
+[react UNSAFE](https://github.com/huangfuchangyu/hfcy-blog/blob/master/webpack/react_UNSAFE.md)
+
+[redux middleware 的链式调用](https://github.com/huangfuchangyu/hfcy-blog/blob/master/webpack/redux%E7%9A%84middleware%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8.md)
+
+[tree-shaking](https://github.com/huangfuchangyu/hfcy-blog/blob/master/webpack/tree-shaking.md)
+
+[webpack loader](https://github.com/huangfuchangyu/hfcy-blog/blob/master/webpack/webpack-loader.md)
+
+[webpack plugin](https://github.com/huangfuchangyu/hfcy-blog/blob/master/webpack/webpack-plugin.md)
+
 
 
 ### 专题
