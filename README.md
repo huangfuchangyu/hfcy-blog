@@ -141,3 +141,15 @@ Array的原型方法 哪些会改变原数组
 
 [微信小程序性能调优](https://github.com/huangfuchangyu/hfcy-blog/blob/master/性能优化/微信小程序性能调优.md)
 
+
+
+
+
+
+
+### 微信小程序
+
+[抽象节点和slot](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E6%8A%BD%E8%B1%A1%E8%8A%82%E7%82%B9%E5%92%8Cslot.md)
+
+[组件和template](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%BB%84%E4%BB%B6%E5%92%8Ctemplate.md)
+
