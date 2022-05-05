@@ -1,4 +1,4 @@
-## useEffect
+## useEffect 精读指南
 
 
 
@@ -38,7 +38,7 @@
 
 **摘要Q5**
 
-effect 拿到的 总是 定义它的那次渲染中的 props 和 state
+effect 拿到的 总是 定义它的那次渲染中的 props 和 state （Capture Value 特性）
 
 
 
@@ -438,7 +438,7 @@ function reducer(state, action) {
 }
 ```
 
-React 会保证 `dispatch` 在组件的生命周期内 保持不变
+**React 会保证 `dispatch` 在组件的生命周期内 保持不变 **
 
 如果， 我们想`dispatch` 的依赖其他状态， 可以把 reducer 放到 组件内
 
@@ -469,4 +469,134 @@ function Counter({step}) {
 
 
 #### 把函数移动到 effect 里
+
+一个典型的误解是认为 函数不应该称为依赖，举个例子 下面的代码看上去可以运行正常
+
+``` jsx
+function SearchResults() {
+  const [data, setData] = useState({hits: []})
+  
+  async function fetchData() {
+    const reuslt = await axios('url')
+    setData(reuslt.data)
+  }
+  
+  useEffect(() => {
+    fetchData()
+  }, [])
+}
+```
+
+需要明确的是 ， 上面的代码可以正常工作，但是这样的组件在 日渐复杂的迭代的过程中我们很难保证它在各种情况下正常运行， 比如在某些函数内使用了是 state 或者 prop
+
+``` jsx
+function SearchResults() {
+  const [data, setData] = useState({hits: []})
+  const [query, setQuery] = useState('/aabb')
+  
+  async function fetchData() {
+    const reuslt = await axios('url' + query)
+    setData(reuslt.data)
+  }
+  
+  useEffect(() => {
+    fetchData()
+  }, [])
+}
+```
+
+如果我们忘记去更新使用这些函数的effect 依赖， 我们的 effects 就不会同步 props 和 state 带来的变更
+
+``` jsx
+function SearchResults() {
+  const [data, setData] = useState({hits: []})
+  const [query, setQuery] = useState('/aabb')
+  
+  async function fetchData() {
+    const reuslt = await axios('url' + query)
+    setData(reuslt.data)
+  }
+  
+  useEffect(() => {
+    fetchData()
+  }, [query]) // deps are OK
+}
+```
+
+我们可以把函数放到 依赖里吗 ？ 显然是可以的
+
+``` jsx
+function SearchResults () {
+  const [query, setQuery] = useState('/aabb')
+  
+  const getFetchUrl = useCallback(
+    () => {
+      return await axios('url' + query)
+    }, 
+    [query]
+  )
+  
+  useEffect(
+    () => {
+      getFetchUrl()
+      // ...
+    }, 
+    [getFetchUrl]
+  ) 
+}
+```
+
+
+
+#### 说说竟态
+
+下面是一个典型的 在 calss 组件里发生请求的例子
+
+``` jsx
+class Article extends Component {
+  state = {
+    article: null
+  }
+  componentDidMount() {
+    this.fetchData(this.props.id)
+  }
+  componentDidUpdate(prevProps) {
+    if(prevProps.id !== this.props.id) {
+      this.fetchData(this.props.id)
+    }
+  }
+  async fetchData(id) {
+    const article = await API.fetchArticle(id)
+    this.setData({article})
+  }
+}
+```
+
+这里问题的原因是请求返回的结果并不能保证顺序，比如 现请求了 id = 20,  然后更新到id = 10, 但是 id = 20 的请求并不会保证优先返回， 可以通过增加一个 状态来解决
+
+``` jsx
+function Article({id}) {
+  const [article, setArticle] = useState(null)
+  
+  useEffect(
+  	() => {
+      let didCancel = false
+      
+      async function fetchData() {
+        const article = await API.fetchArticle(id)
+        if(!didCancel) {
+          setArticle(article)
+        }
+      }
+      
+      fetchData()
+      
+      return () => {
+        didCancel = true
+      }
+    },
+    [id]
+  )
+}
+```
 
