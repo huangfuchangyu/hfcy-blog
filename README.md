@@ -119,7 +119,7 @@ Array的原型方法 哪些会改变原数组
 
 [React Hooks not magic just array](https://github.com/huangfuchangyu/hfcy-blog/blob/master/react/ReactHooks%20not%20magic%20just%20array.md)
 
-[setState是怎么知道更新组件的](https://github.com/huangfuchangyu/hfcy-blog/blob/master/react/useEffect.md)
+[setState是怎么知道更新组件的](https://github.com/huangfuchangyu/hfcy-blog/blob/master/react/setState是怎么知道更新组件的.md)
 
 [useEffect](https://github.com/huangfuchangyu/hfcy-blog/blob/master/react/useEffect.md)
 
