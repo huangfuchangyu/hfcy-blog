@@ -171,3 +171,5 @@ Array的原型方法 哪些会改变原数组
 
 [组件和template](https://github.com/huangfuchangyu/hfcy-blog/blob/master/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%BB%84%E4%BB%B6%E5%92%8Ctemplate.md)
 
+[小程序性能优化]()
+
