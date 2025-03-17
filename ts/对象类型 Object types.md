@@ -296,3 +296,175 @@ type OneOrManyOrNullStrings = OneOrManyOrNull<string>;
 type OneOrManyOrNullStrings = OneOrMany<string> | null
 ```
 
+
+
+
+
+#### Array 类型
+
+当我们这样写类型 `number[]` 或者 `string[]` 的时候， 实际上是 `Array<number>` 和 `Array<string>` 的简写
+
+`Array` 本身就是一个泛型
+
+``` typescript
+interface Array<Type> {
+  length: number
+  pop(): Type | undefined
+  push(...items: Type[]): number
+}
+```
+
+现代JavaScript也提供其他是泛型的数据结构，比如 `Map<K, V>`,  `Set<T>` 和 `Promise<T>`,  因为 `Map` `Set` `Promise` 的行为表现， 他们可以跟任何类型搭配使用
+
+
+
+#### `ReadonlyArray` 
+
+`ReadonlyArray` 是一个特殊类型，它可以描述数组不能被改变
+
+``` typescript
+function doStuff(values: ReadonlyArray<string>) {
+  // We can read from 'values'...
+  const copy = values.slice();
+  console.log(`The first value is ${values[0]}`);
+ 
+  // ...but we can't mutate 'values'.
+  values.push("hello!");
+  // Property 'push' does not exist on type 'readonly string[]'.
+}
+```
+
+`ReadonlyArray` 主要是来做意图声明，当我们看到一个函数返回 `ReadonlyArray` ,就是在告诉我们不能去更改其中的内容, 当我们看到一个函数支持传入 `ReadonlyArray` 这就告诉我们可以放心的传入数组到这个函数中，而不用担心改变数组内容，`ReadonlyArray` 并不是我们可以用的构造器函数
+
+``` typescript
+new ReadonlyArray("red", "green", "blue");
+// 'ReadonlyArray' only refers to a type, but is being used as a value here.
+```
+
+然而我们可以直接把一个常规数组赋值给 `ReadonlyArray`
+
+``` typescript
+const roArray: ReadonlyArray<string> = ['red', 'green', 'blue']
+```
+
+typescript 也针对 `ReadonlyArray<Type>` 提供了更简短的写法 `readonlyType[]`
+
+有一点要注意， `Arrays` 和 `ReadonlyArray` 并不能双向赋值
+
+``` typescript
+let x: readonly string[] = []
+let y: string[] = []
+
+x = y // ok
+y = x //  The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+```
+
+
+
+
+
+#### 元祖类型 Tuple Types
+
+元祖类型是另外一种 `Array` 类型，当你明确知道数组包含多少个元素，并且每个位置元素的类型都明确知道的时候，就适合使用元组类型
+
+``` typescript
+type StringNumberPair = [string, number]
+```
+
+在这个例子中，`StringNumberPair`  就是 `string` 和 `number` 的元组类型
+
+如果要获取元素数量之外的元素，typescript 会提示错误
+
+``` typescript
+function doSomething(pair: [string, number]) {
+  // ...
+  const c = pair[2]
+  // Tuple type '[string, number]' of length '2' has no element at index '2'.
+}
+```
+
+也可以使用JavaScript 数组的解构语法解构元组
+
+除了长度检查，简单的元组类型跟声明了 `length` 属性和具体的索引属性的 `Array` 是一样的
+
+``` typescript
+interface StringNumberPair {
+  length: 2
+  0: string
+  1: number
+  slice(start?: number, end?: number): Array<string | number>
+}
+```
+
+在元组类型中，可以写一个可选属性，但是必须在最后面，而且也会影响 类型的`length` 
+
+``` typescript
+type Either2Or3 = [number, number, number?]
+function setCoordinate(coord: Either2Or3) {
+  const [x, y, z] = coord
+  const z:number | undefined
+  console.log(`Provided coordinates had ${coord.length} dimensions`);
+  // (property) length: 2 | 3
+}
+```
+
+Tuples 也可以使用剩余元素的语法，但必须是 array / tuple 类型
+
+``` typescript
+type StringNumberBooleans = [...boolean[], string, number]
+```
+
+有剩余元素的元组并不会设置 `length` 因为它只知道在不同位置上的一直元素信息
+
+可选元素和剩余元素的存在，使得 typescript 可以在参数列表里使用元组
+
+``` typescript
+function readButtonInput(...args: [string, number, ...boolean[]]) {
+  const [name, version, ...input] = args;
+  // ...
+}
+
+// 基本等同于
+
+function readButtonInput(name: string, version: number, ...input: boolean[]) {
+  // ...
+}
+```
+
+
+
+
+
+#### `readonly` 元组类型
+
+元组类型也是可以设置 `readonly ` 的
+
+``` typescript
+function doSomething(pair: readonly [string, number]) {
+  // ...
+  
+  pair[0] = 'hello'
+  // Cannot assign to '0' because it is a read-only property.
+}
+```
+
+在大部分代码中， 元组只是被创建，使用完后也不会被修改，所以尽可能将元组设置为 `readonly` 是一个好习惯
+
+如果给数组字面量 `const` 断言，也会被推断为 `readonly` 元祖类型
+
+``` typescript
+let point = [3, 4] as const;
+ 
+function distanceFromOrigin([x, y]: [number, number]) {
+  return Math.sqrt(x ** 2 + y ** 2);
+}
+ 
+distanceFromOrigin(point);
+
+// Argument of type 'readonly [3, 4]' is not assignable to parameter of type '[number, number]'.
+// The type 'readonly [3, 4]' is 'readonly' and cannot be assigned to the mutable type '[number, number]'.
+
+
+// 尽管  distanceFromOrigin  并没有更改传入的元素，但函数希望传入一个可变元组， 因为 point 的类型被推断为  readonly[3, 4], 他跟 [number, number] 并不兼容，所以 typescript 给了一个报错
+```
+
