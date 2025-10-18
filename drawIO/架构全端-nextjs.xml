@@ -1,0 +1,399 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Next.js 全面架构" id="NextJS-Comprehensive-Architecture">
+    <mxGraphModel dx="1426" dy="881" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- 用户层 -->
+        <mxCell id="userLayer" value="用户层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1090" height="100" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="webUsers" value="Web 用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="80" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mobileUsers" value="移动端用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="apiConsumers" value="API 消费者" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="460" y="80" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="crawlers" value="爬虫/搜索引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="640" y="80" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 接入层 -->
+        <mxCell id="accessLayer" value="接入层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="1090" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="cdn" value="CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="loadBalancer" value="负载均衡器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="240" y="200" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="waf" value="WAF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="380" y="200" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="domain" value="域名/DNS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="520" y="200" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ssl" value="SSL/TLS 终端" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="660" y="200" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- Next.js 应用层 -->
+        <mxCell id="appLayer" value="Next.js 应用层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="1090" height="380" as="geometry"/>
+        </mxCell>
+        
+        <!-- 渲染策略 -->
+        <mxCell id="renderingStrategies" value="渲染策略" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="100" y="340" width="200" height="300" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ssg" value="SSG&#xa;静态生成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="380" width="160" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="isr" value="ISR&#xa;增量静态再生" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="440" width="160" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ssr" value="SSR&#xa;服务端渲染" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="500" width="160" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="csr" value="CSR&#xa;客户端渲染" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="560" width="160" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 核心功能 -->
+        <mxCell id="coreFeatures" value="核心功能" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="300" height="300" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="appRouter" value="App Router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="380" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="pagesRouter" value="Pages Router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="380" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="apiRoutes" value="API Routes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="440" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="middleware" value="中间件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="440" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="imageOptimization" value="图片优化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="500" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="fontOptimization" value="字体优化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="500" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="scriptOptimization" value="脚本优化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="360" y="560" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="staticServing" value="静态文件服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="560" width="120" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 状态管理 -->
+        <mxCell id="stateManagement" value="状态管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="340" width="200" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="zustand" value="Zustand" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redux" value="Redux Toolkit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="790" y="380" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="context" value="React Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="700" y="430" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="swr" value="SWR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="790" y="430" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- UI 框架 -->
+        <mxCell id="uiFrameworks" value="UI 框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="500" width="200" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="tailwind" value="Tailwind CSS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="700" y="540" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mui" value="Material-UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="790" y="540" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="chakra" value="Chakra UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="700" y="580" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="antd" value="Ant Design" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="790" y="580" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 数据层 -->
+        <mxCell id="dataLayer" value="数据层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="700" width="1090" height="200" as="geometry"/>
+        </mxCell>
+        
+        <!-- 数据库 -->
+        <mxCell id="databases" value="数据库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="100" y="740" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="postgresql" value="PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mysql" value="MySQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="210" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mongodb" value="MongoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redis" value="Redis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="820" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="sqlite" value="SQLite" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="210" y="820" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- ORM/ODM -->
+        <mxCell id="orm" value="ORM/ODM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="440" y="740" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="prisma" value="Prisma" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="460" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="drizzle" value="Drizzle ORM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="550" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mongoose" value="Mongoose" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="640" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="typeorm" value="TypeORM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="460" y="820" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 外部服务 -->
+        <mxCell id="externalServices" value="外部服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="780" y="740" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="auth0" value="Auth0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="800" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="stripe" value="Stripe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="890" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="sendgrid" value="SendGrid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="980" y="780" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="aws" value="AWS Services" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="800" y="820" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="cloudinary" value="Cloudinary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="890" y="820" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 基础设施层 -->
+        <mxCell id="infrastructureLayer" value="基础设施层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="1090" height="200" as="geometry"/>
+        </mxCell>
+        
+        <!-- 部署平台 -->
+        <mxCell id="deployment" value="部署平台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="100" y="960" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="vercel" value="Vercel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="netlify" value="Netlify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="210" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="awsAmplify" value="AWS Amplify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="docker" value="Docker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1040" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="k8s" value="Kubernetes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="210" y="1040" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 监控和日志 -->
+        <mxCell id="monitoring" value="监控和日志" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="440" y="960" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="sentry" value="Sentry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="datadog" value="Datadog" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="logrocket" value="LogRocket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="newrelic" value="New Relic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1040" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 开发和工具 -->
+        <mxCell id="devTools" value="开发和工具" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="780" y="960" width="300" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="typescript" value="TypeScript" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="eslint" value="ESLint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="890" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="prettier" value="Prettier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="980" y="1000" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="jest" value="Jest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1040" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="cypress" value="Cypress" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="890" y="1040" width="80" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <mxCell id="conn1" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="webUsers" target="cdn">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="160" as="sourcePoint"/>
+            <mxPoint x="210" y="110" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mobileUsers" target="loadBalancer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="160" as="sourcePoint"/>
+            <mxPoint x="390" y="110" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="apiConsumers" target="waf">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="160" as="sourcePoint"/>
+            <mxPoint x="570" y="110" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="crawlers" target="domain">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="160" as="sourcePoint"/>
+            <mxPoint x="750" y="110" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="cdn" target="ssg">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="300" as="sourcePoint"/>
+            <mxPoint x="200" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="loadBalancer" target="isr">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="300" as="sourcePoint"/>
+            <mxPoint x="340" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="waf" target="ssr">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="300" as="sourcePoint"/>
+            <mxPoint x="480" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="ssl" target="csr">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="300" as="sourcePoint"/>
+            <mxPoint x="770" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="apiRoutes" target="postgresql">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="700" as="sourcePoint"/>
+            <mxPoint x="470" y="650" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="middleware" target="redis">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="700" as="sourcePoint"/>
+            <mxPoint x="610" y="650" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="prisma" target="vercel">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="920" as="sourcePoint"/>
+            <mxPoint x="550" y="870" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="zustand" target="sentry">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="740" y="920" as="sourcePoint"/>
+            <mxPoint x="790" y="870" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

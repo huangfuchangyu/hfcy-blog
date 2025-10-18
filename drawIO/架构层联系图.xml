@@ -1,0 +1,180 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="架构层联系" id="Architecture-Layer-Connections">
+    <mxGraphModel dx="1426" dy="881" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- 四层架构 -->
+        <mxCell id="userLayer" value="用户交互层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="600" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="nextjsLayer" value="Next.js 核心层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="200" y="180" width="600" height="150" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="frameworkLayer" value="前端框架层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="600" height="150" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="toolsLayer" value="工具和基础设施层" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="200" y="520" width="600" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- 用户交互层组件 -->
+        <mxCell id="browser" value="浏览器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mobile" value="移动端" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="340" y="80" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="pwa" value="PWA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="440" y="80" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ssrEnv" value="SSR环境" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- Next.js 核心层组件 -->
+        <mxCell id="appRouter" value="App Router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="240" y="220" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="rendering" value="渲染引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="220" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="apiRoutes" value="API Routes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="480" y="220" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="middleware" value="中间件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="600" y="220" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 前端框架层组件 -->
+        <mxCell id="react" value="React" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="state" value="状态管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="340" y="390" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ui" value="UI框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="440" y="390" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="dataFetching" value="数据获取" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="540" y="390" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 工具层组件 -->
+        <mxCell id="typescript" value="TypeScript" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="240" y="560" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="testing" value="测试工具" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="560" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="build" value="构建工具" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="440" y="560" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="deploy" value="部署监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="560" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- 层间联系箭头 -->
+        <!-- 用户层 -> Next.js 层 -->
+        <mxCell id="conn1" value="HTTP 请求&#xa;用户交互" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="430" y="150" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="430" y="150" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn1_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="userLayer" target="nextjsLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="180" as="sourcePoint"/>
+            <mxPoint x="550" y="130" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Next.js 层 -> 框架层 -->
+        <mxCell id="conn2" value="组件渲染&#xa;API 调用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="430" y="320" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="430" y="320" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn2_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="nextjsLayer" target="frameworkLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="350" as="sourcePoint"/>
+            <mxPoint x="550" y="300" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 框架层 -> 工具层 -->
+        <mxCell id="conn3" value="开发时依赖&#xa;构建时处理" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="430" y="490" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="430" y="490" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn3_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="frameworkLayer" target="toolsLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="520" as="sourcePoint"/>
+            <mxPoint x="550" y="470" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 工具层 -> 用户层 (反馈循环) -->
+        <mxCell id="conn4" value="性能监控&#xa;错误追踪" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="750" y="300" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="750" y="300" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn4_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="toolsLayer" target="userLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="580" as="sourcePoint"/>
+            <mxPoint x="850" y="530" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 跨层直接联系 -->
+        <mxCell id="conn5" value="直接组件引用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150" y="300" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="150" y="300" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn5_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="userLayer" target="frameworkLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="100" as="sourcePoint"/>
+            <mxPoint x="200" y="390" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn6" value="开发工具集成" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="150" y="450" width="80" height="40" relative="1" as="geometry">
+            <mxPoint x="150" y="450" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="conn6_arrow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="nextjsLayer" target="toolsLayer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="255" as="sourcePoint"/>
+            <mxPoint x="200" y="580" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
